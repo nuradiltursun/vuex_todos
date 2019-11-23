@@ -14,6 +14,9 @@
   2. store.js vuex的store再这个文件
   3. 用的是这个[开源数据](https://jsonplaceholder.typicode.com/todos)，不知道是否需要科学上网
 
+
+他用的是组件的形式来完成项目，我用的是cdn，功能一模一样，作为初学者在完成项目的过程中发现了下面几种问题
+
 1. vuex用cdn的时候如果用mapGetters,mapActions之类的话前面加个Vuex就行了，比如Vuex.mapActions()
 2. 一定要记住getters要是改变的数据的话只能改变一边。
 3. 需要改变的数据都在mutations里完成的。
