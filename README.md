@@ -49,6 +49,18 @@
 
 * 用async的函数一般返回promise
 
+最后一点有个小bug就是自己添加数据，然后改变状态不起作用，因为我们的数据不是添加的服务器，改变状态的函数是获取服务器数据的
+
+```javascript
+// 要发到服务器，我们的数据不在服务器内，所以不起作用，要注意。
+ async updateTodo({commit}, updTodo){
+            const response=await axios.put(`https://jsonplaceholder.typicode.com/todos/${updTodo.id}`,updTodo);
+            console.log(response.data);
+            commit('updateTodo',response.data);
+        }
+
+```
+
 
 
 
