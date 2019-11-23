@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vuex toco Managemnt</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <style>
+        #todo{
+            height: 80px;
+            overflow: hidden;
+            color: white;
+       
+        }
+        #app,#search{
+            background: rgb(172, 241, 192);
+        }
+       
+        .todo{
+            background: #5cb85c;
+        }
+        .is-complete,.complete{
+            background:chocolate;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app" class="pb-4">
+        <!-- <button @dblclick="test" id="btn" class="btn btn-primary btn-block text-white">getData</button> -->
+        <div class="bg-dark  sticky-top mb-2">
+            <div class="container text-center py-2  text-white" style="font-size:20px;">
+                简单的vuex应用
+            </div>
+            <div class="row " id="search">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row my-2 p-2">
+                                <div class="col-9 ">
+                                    <input type="text" v-model="title" class="form-control">
+                                </div>
+                                <div class="col-3 ">
+                                    <button @click="addTodo" class="btn btn-success btn-block">添加</button>
+                                </div>
+                        </div>
+                        <div class="row my-2 p-2">
+                            <div class="col-4">
+                                <label for="" class="mr-1">选择数量</label>
+                                <select name="" @change="filterTodos($event)" id="">
+                                    <option value="200" selected>选择</option>
+                                    <option value="150">150</option>
+                                    <option value="50">50</option>
+                                    <option value="10">10</option>
+                                    <option value="5">5</option>
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                            <div class="col-8"></div>
+                        </div>
+                        <div class="row my-2 p-2">
+                            <div class="col-lg-4  col-md-12">
+                                双击可以改变任务状态
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                    <span class="badge badge-success ml-2"> &nbsp; </span> = 未完成
+                            </div>
+                            <div class="col-lg-4  col-md-12">
+                                    <span class="badge complete ml-2"> &nbsp; </span> = 完成
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+           
+        </div>
+
+        <div class="container">
+           <div class="row">
+               <div v-for="todo in allTodos" v-bind:key="todo.id"  class="col-lg-4 col-md-6 col-sm-12">
+                   <div class="row justify-content-center">
+                       <div @dblclick="onDblClick(todo)" class="col-11 todo m-1 d-flex justify-centent-center align-items-center" v-bind:class="{'is-complete' : todo.completed}" id="todo">
+                           {{ todo.title }}
+                           <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt ml-2"></i>
+
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script src="./store.js"></script>
+    <script>
+        var app=new Vue({
+            el : '#app',
+            data : {
+                todos : [],
+                title : ''
+            },
+            store,
+            computed : {
+                
+            },
+            methods : {
+              
+                // 各个函数在这儿绑定，一定要在同名才能数组的形式写出来，要不然踏踏实实的用对象来表达出来
+                // 如果要带着参数的话一定要单独的函数来完成
+                // 举个简单的例子吧，比如一个form 有onsubmit的事件，其中有一个提交按钮，这个时候需要用两个事件，当然一个时间亦可以完成，但是要用两个事件来完成的话，form的obsubmit的事件绑定到vuex中的actions方法，这个就像下面的数组形式写出来，然后form里的按钮再添加事件，参数在这个函数里完成传递的。
+                // 我在下面的例子不用上面的方法，因为我没写form，直接写了个input，所以用dipatch的形式来写
+                ...Vuex.mapActions(['fetchTodos','deleteTodo','filterTodos','updateTodo']),
+
+                addTodo(){
+                    // console.log(this.title);
+                    this.$store.dispatch('addTodo',this.title);
+                },
+                onDblClick(todo){
+                    var updTodo={
+                        id : todo.id,
+                        title : todo.title,
+                        completed : !todo.completed
+                    }
+                    this.updateTodo(updTodo);
+                }
+            },
+            created(){
+
+                this.fetchTodos();
+            },
+             mounted(){
+            },
+            computed : Vuex.mapGetters(['allTodos']),
+
+
+        })
+    
+    </script>
+</body>
+</html>
