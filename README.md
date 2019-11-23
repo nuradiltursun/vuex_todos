@@ -1,7 +1,7 @@
 # vuex_todos
 用vuex，axios做了个TodoApp
 
-跟着brad做了个todoapp，用的是vuex，axios，
+跟着[brad](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)做的，用的是vuex，axios，bt4，
 
 * [视频项目](https://www.youtube.com/watch?v=5lVQgZzLMHc)
 * [项目源代码](https://github.com/bradtraversy/vuex_todo_manager)
