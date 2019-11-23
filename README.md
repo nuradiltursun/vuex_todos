@@ -37,6 +37,7 @@
   </select>
 ```
 
+
 用vue怎么获取select的值呢？？
 
 ```javascript
