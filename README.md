@@ -3,9 +3,9 @@
 
 跟着brad做了个todoapp，用的是vuex，axios，
 
-* (视频项目)[https://www.youtube.com/watch?v=5lVQgZzLMHc]
-* (项目源代码)[https://github.com/bradtraversy/vuex_todo_manager]
-* (他的频道)[https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA]
+* [视频项目](https://www.youtube.com/watch?v=5lVQgZzLMHc)
+* [项目源代码](https://github.com/bradtraversy/vuex_todo_manager)
+* [他的频道](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
 
 他用的是组件的形式来完成项目，我用的是cdn，功能一模一样，作为初学者在完成项目的过程中发现了下面几种问题
 
@@ -48,7 +48,7 @@
 再调用函数的时候要要有个参数一定是$event,在函数中用个变量来获取就行，获取那个调用事件的元素，一般用e来拿取。
 
 * 用async的函数一般返回promise
-* 
+
 
 
 
